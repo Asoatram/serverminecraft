@@ -75,6 +75,20 @@ export default function DashboardComponent() {
         </div>
     )
   }
+  else if(!loading && data.status === "stopping"){
+    return(
+        <div className="flex h-screen w-screen justify-center items-center">
+        <Card className="flex flex-col w-1/2 h-1/2 items-center py-2">
+          <CardHeader>
+            <CardTitle>Start The Server</CardTitle>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-2 items-center">
+            <DashboardComponentStopping/>
+          </CardContent>
+          </Card>
+        </div>
+    )
+  }
 }
 
 
@@ -120,6 +134,17 @@ export function DashboardComponentRunning() {
             <Badge className="bg-green-500 hover:bg-green-700">Running</Badge>
             <p>IP Address: asoatramserver.ddns.net</p>
             <Button onClick={stopServer}>Stop</Button>
+        </>
+    );
+}
+
+function DashboardComponentStopping() {
+
+    return (
+        <>
+            <Badge className="bg-red-500 hover:bg-red-700">Stopping</Badge>
+            <p>IP Address: asoatramserver.ddns.net</p>
+            <Button disabled>Wait...</Button>
         </>
     );
 }
